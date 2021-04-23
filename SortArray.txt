@@ -1,0 +1,58 @@
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class SortArray {
+
+	public static void main(String[] args) {
+		Scanner consoleScanner = new Scanner(System.in);
+
+		// Creates array with user given size
+
+		System.out.println("Choose how many numbers you want to generate:");
+
+		int arrsize = consoleScanner.nextInt();
+		int[] arr = new int[arrsize];
+		consoleScanner.close();
+		System.out.println("Here is your " + arrsize + " randomly generated numbers:");
+		String sep = "";
+
+		for (int i = 0; i < arr.length; i++) {
+			int rand = randNumber(10, 99); // Generates values
+			arr[i] = rand;
+			System.out.print(sep);
+			System.out.print(arr[i]);
+			sep = ", ";
+		}
+
+		// Sort the array in ascending order using two for loops
+		int temp;
+		for (int i = 0; i < arr.length; i++) {
+			for (int j = i + 1; j < arr.length; j++) {
+				if (arr[i] > arr[j]) { // Swap elements if not in order
+					temp = arr[i];
+					arr[i] = arr[j];
+					arr[j] = temp;
+				}
+			}
+		}
+
+		// Print sorted array
+		sep = "";
+		System.out.println("\nArray sorted in ascending order: ");
+		for (int i = 0; i < arr.length; i++) {
+			System.out.print(sep);
+			System.out.print(arr[i]);
+			sep = ", ";
+		}
+	}
+
+	public static int randNumber(int min, int max) {
+
+		int range = max - min + 1;
+		Random rnd = new Random();
+
+		int result = rnd.nextInt(range) + min;
+		return result;
+	}
+}
